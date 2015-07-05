@@ -140,6 +140,7 @@
                 <version>2.1.1</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>${project.artifactId}</warName>
                 </configuration>
             </plugin>
             <plugin>
