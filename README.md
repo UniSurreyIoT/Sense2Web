@@ -1,4 +1,5 @@
-S2W
-===
+**This project is part of FIWARE**
 
-Sense2Web Platform
+Sense2Web 
+
+A Linked Data Platform for IoT
