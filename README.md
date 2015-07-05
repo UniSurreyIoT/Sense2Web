@@ -1,2 +1,5 @@
+### Sense2Web: A Linked Data Platform for IoT.
+
 **This project is part of  [FIWARE](http://fiware.org)**
-## Sense2Web: A Linked Data Platform for IoT.
+
+Check out the FIWARE catalogue [page](http://catalogueA Linked Data Platform for IoT.fiware.org/enablers/iot-discovery) for more info and resources.
