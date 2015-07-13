@@ -11,11 +11,11 @@ import uk.ac.surrey.ee.ccsr.s2w.coap.resource.CoapRegisterDescription;
 import uk.ac.surrey.ee.ccsr.s2w.coap.resource.HelloWorldResource;
 import uk.ac.surrey.ee.ccsr.s2w.coap.resource.CoapLookupDescription;
 import uk.ac.surrey.ee.ccsr.s2w.coap.resource.CoapUpdateDescription;
-import ch.ethz.inf.vs.californium.server.Server;
 import java.io.File;
 import java.util.concurrent.Executors;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import org.eclipse.californium.core.CoapServer;
 
 import uk.ac.surrey.ee.ccsr.s2w.config.*;
 import uk.ac.surrey.ee.ccsr.s2w.model.iota.restlet.RestReqApplication;
@@ -26,7 +26,7 @@ import uk.ac.surrey.ee.ccsr.s2w.model.iota.restlet.RestReqApplication;
  */
 public class CoapServerContextListener implements ServletContextListener {
 
-    public Server server;
+    public CoapServer server;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -36,7 +36,7 @@ public class CoapServerContextListener implements ServletContextListener {
         System.out.println("context-path: " + sce.getServletContext().getContextPath());
         System.out.println("real-path: " + sce.getServletContext().getRealPath(File.separator));
 
-        server = new Server();//5683 is default port number
+        server = new CoapServer();//5683 is default port number
         server.setExecutor(Executors.newScheduledThreadPool(4));
 
         //test

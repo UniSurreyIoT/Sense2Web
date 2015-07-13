@@ -22,29 +22,26 @@
  */
 package uk.ac.surrey.ee.ccsr.s2w.coap.resource;
 
-import ch.ethz.inf.vs.californium.coap.CoAP;
-import ch.ethz.inf.vs.californium.coap.Request;
-import ch.ethz.inf.vs.californium.coap.Response;
-import ch.ethz.inf.vs.californium.network.Exchange;
-import ch.ethz.inf.vs.californium.server.resources.ResourceBase;
 import java.util.List;
+import org.eclipse.californium.core.CoapResource;
+import org.eclipse.californium.core.coap.CoAP;
+import org.eclipse.californium.core.coap.Response;
+import org.eclipse.californium.core.server.resources.CoapExchange;
 import uk.ac.surrey.ee.ccsr.s2w.config.EntityConfigParams;
 import uk.ac.surrey.ee.ccsr.s2w.config.ResourceConfigParams;
 import uk.ac.surrey.ee.ccsr.s2w.config.ServiceConfigParams;
 import uk.ac.surrey.ee.ccsr.s2w.model.iota.restlet.resource.QueryDescription;
 
 
-public class CoapQueryDescription extends ResourceBase {
+public class CoapQueryDescription extends CoapResource {
 
     public CoapQueryDescription(String name) {
 		super(name);
 	}    
     
     @Override
-    public void handleGET(Exchange exchange) {
-        
-        Request request = exchange.getRequest();
-    
+    public void handleGET(CoapExchange exchange) {
+                
 //        System.out.println("This is the URI path:" + request.getOptions().getURIPathString());
 //        System.out.println("This is the URI host:" + request.getOptions().getURIHost());
 //        System.out.println("This is the URI query:" + request.getOptions().getURIQueryString());
@@ -52,10 +49,10 @@ public class CoapQueryDescription extends ResourceBase {
         String sparqlQuery = "";
         String objType = "";
         String format = "";
-        int queryCount = request.getOptions().getURIQueryCount();
-        List<String> queries = request.getOptions().getURIQueries();
+        int queryCount = exchange.getRequestOptions().getURIQueryCount();
+        List<String> queries = exchange.getRequestOptions().getUriQuery();
         
-        objType = request.getOptions().getURIPathString();        
+        objType = exchange.getRequestOptions().getUriPathString();        
         if (objType.contains(ResourceConfigParams.objType)) {
             objType = ResourceConfigParams.objType;
         } else if (objType.contains(EntityConfigParams.objType)) {
@@ -96,15 +93,14 @@ public class CoapQueryDescription extends ResourceBase {
         response.setPayload(result);        
 
         // complete the request
-        respond(exchange, response);
+        exchange.respond(response);
         
     }
     
     @Override
-    public void handlePOST(Exchange exchange) {
+    public void handlePOST(CoapExchange exchange) {
         
-        Request request = exchange.getRequest();
-        String sparqlQuery = request.getPayloadString();
+        String sparqlQuery = exchange.getRequestText();
 
 //        System.out.println("This is the URI path:" + request.getOptions().getURIPathString());
 //        System.out.println("This is the URI host:" + request.getOptions().getURIHost());
@@ -113,8 +109,8 @@ public class CoapQueryDescription extends ResourceBase {
         String objId = null;
         String objType = null;
         String format = null;
-        int queryCount = request.getOptions().getURIQueryCount();
-        List<String> queries = request.getOptions().getURIQueries();
+        int queryCount = exchange.getRequestOptions().getURIQueryCount();
+        List<String> queries = exchange.getRequestOptions().getUriQuery();
 
         for (int i = 0; i < queryCount; i++) {
 
@@ -148,7 +144,7 @@ public class CoapQueryDescription extends ResourceBase {
         response.setPayload(result);        
 
         // complete the request
-        respond(exchange, response);
+        exchange.respond(response);
     }
     
     

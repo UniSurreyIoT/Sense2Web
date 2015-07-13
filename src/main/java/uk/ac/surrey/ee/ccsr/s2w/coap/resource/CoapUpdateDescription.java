@@ -30,38 +30,36 @@
  */
 package uk.ac.surrey.ee.ccsr.s2w.coap.resource;
 
-import ch.ethz.inf.vs.californium.coap.CoAP;
-import ch.ethz.inf.vs.californium.coap.Request;
-import ch.ethz.inf.vs.californium.coap.Response;
-import ch.ethz.inf.vs.californium.network.Exchange;
-import ch.ethz.inf.vs.californium.server.resources.ResourceBase;
 import java.util.List;
+import org.eclipse.californium.core.CoapResource;
+import org.eclipse.californium.core.coap.CoAP;
+import org.eclipse.californium.core.coap.Response;
+import org.eclipse.californium.core.server.resources.CoapExchange;
 import uk.ac.surrey.ee.ccsr.s2w.config.EntityConfigParams;
 import uk.ac.surrey.ee.ccsr.s2w.config.ResourceConfigParams;
 import uk.ac.surrey.ee.ccsr.s2w.config.ServiceConfigParams;
 import uk.ac.surrey.ee.ccsr.s2w.model.iota.restlet.resource.UpdateDescription;
 
-public class CoapUpdateDescription extends ResourceBase {
+public class CoapUpdateDescription extends CoapResource {
 
     public CoapUpdateDescription(String name) {
         super(name);
     }
 
     @Override
-    public void handlePUT(Exchange exchange) {
+    public void handlePUT(CoapExchange exchange) {
 
-        Request request = exchange.getRequest();
-        String updDescription = request.getPayloadString();
+        String updDescription = exchange.getRequestText();
 
  //        System.out.println("This is the URI path:" + request.getOptions().getURIPathString());
 //        System.out.println("This is the URI host:" + request.getOptions().getURIHost());
 //        System.out.println("This is the URI query:" + request.getOptions().getURIQueryString());
         String objId = "";
         String objType = "";
-        int queryCount = request.getOptions().getURIQueryCount();
-        List<String> queries = request.getOptions().getURIQueries();
+        int queryCount = exchange.getRequestOptions().getURIQueryCount();
+        List<String> queries = exchange.getRequestOptions().getUriQuery();
         
-        objType = request.getOptions().getURIPathString();        
+        objType = exchange.getRequestOptions().getUriPathString();        
         if (objType.contains(ResourceConfigParams.objType)) {
             objType = ResourceConfigParams.objType;
         } else if (objType.contains(EntityConfigParams.objType)) {
@@ -102,6 +100,6 @@ public class CoapUpdateDescription extends ResourceBase {
         response.setPayload(result);        
 
         // complete the request
-        respond(exchange, response);
+        exchange.respond(response);
     }
 }

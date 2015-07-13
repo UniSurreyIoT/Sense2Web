@@ -30,27 +30,27 @@
  ******************************************************************************/
 package uk.ac.surrey.ee.ccsr.s2w.coap.resource;
 
-import ch.ethz.inf.vs.californium.coap.CoAP.ResponseCode;
-import ch.ethz.inf.vs.californium.coap.Response;
-import ch.ethz.inf.vs.californium.network.Exchange;
-import ch.ethz.inf.vs.californium.server.resources.ResourceBase;
+import org.eclipse.californium.core.CoapResource;
+import org.eclipse.californium.core.coap.CoAP.ResponseCode;
+import org.eclipse.californium.core.coap.Response;
+import org.eclipse.californium.core.server.resources.CoapExchange;
 
 /**
  * This resource responds with a kind "hello world" to GET requests.
  * 
  * @author Martin Lanter
  */
-public class HelloWorldResource extends ResourceBase {
+public class HelloWorldResource extends CoapResource {
 
 	public HelloWorldResource(String name) {
 		super(name);
 	}
 	
 	@Override
-	public void handleGET(Exchange exchange) {
+	public void handleGET(CoapExchange exchange) {
 		Response response = new Response(ResponseCode.CONTENT);
 		response.setPayload("hello world");
-		respond(exchange, response);
+		exchange.respond(response);
 	}
 
 }
