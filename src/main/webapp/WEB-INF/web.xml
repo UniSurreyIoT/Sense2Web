@@ -84,27 +84,27 @@
     </mime-mapping>
     <listener>
         <description>This listener will train the prob search engine at startup</description>
-        <listener-class>uk.ac.surrey.ee.ccsr.s2w.probengine.servlet.ETContextListener</listener-class>
+        <listener-class>uk.ac.surrey.ee.iot.s2w.probengine.servlet.ETContextListener</listener-class>
     </listener>
     <!--    <listener>
         <description>This listener will start the CoAP server</description>
-        <listener-class>uk.ac.surrey.ee.ccsr.s2w.coap.CoapServerCL</listener-class>
+        <listener-class>uk.ac.surrey.ee.ccsr.s2w.coap.CoapServerContextListener</listener-class>
     </listener>-->
     <servlet>
         <servlet-name>DBPediaTagSuggestion</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.linkeddata.DBPediaTagSuggestServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.linkeddata.DBPediaTagSuggestServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LocalQuery</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.LocalQueryServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.LocalQueryServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>OverlayMapsDemo</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.webapp.map.OverlayMapsDemoServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.webapp.map.OverlayMapsDemoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PublishObjectFile</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.PublishObjectFileServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.PublishObjectFileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RestletServlet</servlet-name>
@@ -112,34 +112,29 @@
         <init-param>
             <!-- Application class name -->
             <param-name>org.restlet.application</param-name>
-            <param-value>uk.ac.surrey.ee.ccsr.s2w.model.iota.restlet.RestReqApplication</param-value>
+            <param-value>uk.ac.surrey.ee.iot.s2w.model.iota.restlet.RestReqApplication</param-value>
         </init-param>
     </servlet>
     <servlet>
         <servlet-name>UpdateDescriptionFile</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.UpdateDescriptionFileServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.UpdateDescriptionFileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IotaRegisterWebFormServlet</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.IotaRegisterWebFormServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.IotaRegisterWebFormServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IotaUpdateWebFormServlet</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.IotaUpdateWebFormServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.IotaUpdateWebFormServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IotaTemplatesServlet</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.IotaTemplatesServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.IotaTemplatesServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>IotaDiscoverWebFormServlet</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.model.iota.servlet.IotaDiscoverWebFormServlet</servlet-class>
+        <servlet-class>uk.ac.surrey.ee.iot.s2w.model.iota.servlet.IotaDiscoverWebFormServlet</servlet-class>
     </servlet>
-    <!--    <servlet>
-        <servlet-name>CoapServerServlet</servlet-name>
-        <servlet-class>uk.ac.surrey.ee.ccsr.s2w.coap.CoapServerServlet</servlet-class>
-        <load-on-startup>0</load-on-startup>
-    </servlet>-->
     <servlet>
         <description>Enable directory listing</description>
         <servlet-name>DirectoryListing</servlet-name>
@@ -191,10 +186,6 @@
         <servlet-name>IotaDiscoverWebFormServlet</servlet-name>
         <url-pattern>/IotaDiscoverWebForm</url-pattern>
     </servlet-mapping>
-    <!--    <servlet-mapping>
-        <servlet-name>CoapServerServlet</servlet-name>
-        <url-pattern>/CoapServerServlet</url-pattern>
-    </servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>DirectoryListing</servlet-name>
         <url-pattern>/share/*</url-pattern>
